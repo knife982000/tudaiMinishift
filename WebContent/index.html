@@ -1,0 +1,29 @@
+<h1>Hello!!</h1>
+<script>
+function test() {
+	document.getElementById("demo").innerHTML = "Hello JavaScript!";
+}
+
+function call() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+         if (this.readyState == 4 && this.status == 200) {
+             var res = JSON.parse(this.responseText)
+             s = ""
+             for (i=0; i < res.length; i++) {
+            	 s += res[i].name + "; "
+             }
+        	 document.getElementById("users").innerHTML = s;
+         }
+    };
+    xhttp.open("GET", "/RESTWebService/rest/usuarios", true);
+    xhttp.send("");
+}
+</script> 
+
+<div id="demo"></div>
+<button type="button" onclick="test()">Fill</button>
+
+
+<div id="users"></div>
+<button type="button" onclick="call()">REST</button>
